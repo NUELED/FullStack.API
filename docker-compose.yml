@@ -1,0 +1,35 @@
+version: '3.4'
+
+
+networks:
+  demodockercomposeapp:
+
+services:
+  demoappdb:
+     container_name: app-db
+     image: mcr.microsoft.com/mssql/server:2019-latest
+     ports:
+       - 8002:1433
+     environment:
+       - ACCEPT_EULA=Y
+       - MSSQL_SA_PASSWORD=password1
+     networks:
+       - demodockercomposeapp
+       #-e "ACCEPT_EULA=Y"
+       #-e "MSSQL_SA_PASSWORD=password1"
+  fullstack.api:
+    image: ${DOCKER_REGISTRY-}fullstackapi
+    build:
+      context: .
+      dockerfile: FullStack.API/Dockerfile
+     #ports:
+       #- 8000:80
+    depends_on:
+      - demoappdb
+    environment:
+      #- DB_HOST=DESKTOP-0FRMSIG
+      - DB_HOST=demoappdb             
+      - DB_NAME=FullStackDb
+      - DB_MSSQL_SA_PASSWORD=password1
+    networks:
+       - demodockercomposeapp
