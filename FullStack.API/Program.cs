@@ -11,7 +11,7 @@ var dbName =  Environment.GetEnvironmentVariable("DB_NAME");                    
 var dbPassword =  Environment.GetEnvironmentVariable("DB_MSSQL_SA_PASSWORD");       //"password1";
 var connectionString = $"Server={dbHost};Database={dbName};User ID=sa;Password={dbPassword}";//Trusted_Connection=True;Encrypt=False;This is for the Db.I took it out
 
-builder.Services.AddDbContext<FullstackDbContext>(opt => opt.UseSqlServer(connectionString));
+builder.Services.AddDbContext<FullstackDbContext>(opt => opt.UseSqlServer(connectionString));//This is bcos of the mssql container we are using
 
 
 //builder.Services.AddDbContext<FullstackDbContext>(opt =>opt.UseSqlServer(builder.Configuration.GetConnectionString("FullstackConnectionString")));
