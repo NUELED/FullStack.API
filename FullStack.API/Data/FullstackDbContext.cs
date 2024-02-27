@@ -11,7 +11,7 @@ namespace FullStack.API.Data
         {
             try
             {
-                //The code below is to create a database if the database does not exist.
+               
 
                 var databaseCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
                 if (databaseCreator != null)

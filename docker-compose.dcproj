@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>b5a2e250-92dd-4bd8-ab94-bf10ea7fac49</ProjectGuid>
+    <ProjectGuid>2f608ef1-cd4a-4be8-8754-72a6c40b8a8a</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>fullstack.api</DockerServiceName>
