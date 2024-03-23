@@ -1,5 +1,5 @@
 ﻿using FullStack.API.Data;
-using FullStack.API.Migrations;
+//using FullStack.API.Migrations;
 using FullStack.API.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

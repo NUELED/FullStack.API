@@ -1,5 +1,7 @@
 ﻿using FullStack.API.Data;
+using FullStack.API.Initializer.Interface;
 using FullStack.API.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FullStack.API.Initializer
 {
@@ -9,7 +11,12 @@ namespace FullStack.API.Initializer
         {
             using (var scope = app.Services.CreateScope())
             {
-                using var context = scope.ServiceProvider.GetRequiredService<FullstackDbContext>();
+                //using var context = scope.ServiceProvider.GetRequiredService<FullstackDbContext>();
+                //var DbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+                var serviceProvider = scope.ServiceProvider;
+                var context = serviceProvider.GetRequiredService<FullstackDbContext>();
+                var dbInitializer = serviceProvider.GetRequiredService<IDbInitializer>();
+              
                 try
                 {
                     context.Database.EnsureCreated();
@@ -25,11 +32,15 @@ namespace FullStack.API.Initializer
                                   );
                         context.SaveChanges();
                     }
-                }
-                catch (Exception)
-                {
 
-                    throw;
+                    dbInitializer.Initialize();
+
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception
+                    Console.WriteLine($"An error occurred while seeding the database: {ex.Message}");
+                    throw; // Re-throw the exception
                 }
 
                 return app;
