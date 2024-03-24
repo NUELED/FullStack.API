@@ -34,6 +34,7 @@ namespace FullStack.API.Data
 
         public DbSet<Player> players { get; set; }
         public DbSet<AppUser> appUsers { get; set; }    
+
        // public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Staff> Staffs { get; set;}
     }

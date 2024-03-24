@@ -21,7 +21,6 @@ namespace FullStack.API.Initializer
                 {
                     context.Database.EnsureCreated();
 
-
                     var riffs = context.players.FirstOrDefault();
                     if (riffs == null)
                     {

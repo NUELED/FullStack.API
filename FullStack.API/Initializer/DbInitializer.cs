@@ -24,10 +24,9 @@ namespace FullStack.API.Initializer
         public void Initialize()
         {
             try
-            {
-               
+            {              
                 // Apply any pending migrations
-                 //    _db.Database.Migrate();  I commented this out bcos of the error it was throwing
+                // _db.Database.Migrate();  I commented this out bcos of the error it was throwing
 
                 // Check if AspNetRoles table already exists
                 bool rolesExist = _db.Roles.Any(r => r.Name == SD.Role_Admin || r.Name == SD.Role_Customer);
@@ -37,7 +36,6 @@ namespace FullStack.API.Initializer
                     _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
                     _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
                 }
-
 
                 // Check if user already exists
                 if (!_userManager.Users.Any(u => u.UserName == "nuel@briz.com"))

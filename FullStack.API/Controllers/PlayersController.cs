@@ -1,6 +1,7 @@
 ﻿using FullStack.API.Data;
 //using FullStack.API.Migrations;
 using FullStack.API.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ namespace FullStack.API.Controllers
 {
     [Route ("api/[controller]")]      
     [ApiController]
+    [Authorize]
     public class PlayersController : Controller
     {
 
@@ -23,6 +25,7 @@ namespace FullStack.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetAllPlayers()
         {
@@ -36,6 +39,7 @@ namespace FullStack.API.Controllers
         [Route("create-player")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddPlayer([FromBody] Player playerRequest)
@@ -48,6 +52,7 @@ namespace FullStack.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Route("{id:Guid}")]
         public async Task<IActionResult> GetPlayer([FromRoute] Guid id)
         {
@@ -62,6 +67,7 @@ namespace FullStack.API.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Route("{id:Guid}")]
         public async Task<IActionResult> UpdatePlayer([FromRoute] Guid id, Player updatePlayerRequest)
         {
@@ -86,6 +92,7 @@ namespace FullStack.API.Controllers
 
 
         [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Route("{id:Guid}")]
         public async Task<IActionResult> DeletePlayer([FromRoute] Guid id)
         {
@@ -101,8 +108,6 @@ namespace FullStack.API.Controllers
             return Ok(player);
 
         }
-
-
 
 
     }
